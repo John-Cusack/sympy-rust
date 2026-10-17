@@ -1,0 +1,19 @@
+sympy-rust: Rust port of the sympy/sympy polys-domain kernel
+==================================================================
+
+This repository holds a kernel-scoped Rust port of
+https://github.com/sympy/sympy (computer algebra system, BSD-3-Clause).
+
+* Upstream authors: the SymPy Development Team
+  (https://github.com/sympy/sympy).
+* Upstream license: BSD-3-Clause. This port links no upstream code; the
+  algorithms reimplemented here (dense polynomial arithmetic over QQ and
+  the QQ domain operations) are behavior-checked against upstream by the
+  equivalence corpus in `tests/`, not copied from it.
+* This port's own code: MIT (see LICENSE). Upstream project names and
+  trademarks remain with their owners.
+
+Scope (ADR-048 in rustsmith): dense polys arithmetic over QQ only
+(`dup_*`, `dmp_mul`, QQ ops) — the single seam the headroom probe proved
+(polys-domains 0.85 rewrite; simplify-core 0.49 upstream_only, out of
+scope). Expand only with measured wins.
