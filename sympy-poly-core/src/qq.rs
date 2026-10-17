@@ -11,7 +11,7 @@
 
 use num_bigint::BigInt;
 use num_rational::Ratio;
-use num_traits::{One, Signed, ToPrimitive, Zero};
+use num_traits::{One, ToPrimitive, Zero};
 
 /// An exact rational (the `QQ` domain element).
 #[derive(Clone, Debug, PartialEq, Eq)]
