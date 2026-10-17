@@ -43,9 +43,9 @@ Kernel slice v0.1.0, measured on x86_64 / python 3.12.3 / sympy 1.14.0
 
 | workload | sympy wall (s) | rust wall (s) | speedup | sympy RSS (MB) | rust RSS (MB) |
 |---|---|---|---|---|---|
-| dup_mul_800 (univariate deg-800 dense QQ) | 0.213 | 0.040 | 5.31x | 46.5 | 47.2 |
-| dmp_mul_3var (`(x+y+z+1)^12` squared) | 0.108 | 0.012 | 8.85x | 48.6 | 49.9 |
-| dup_gcd_70 (heuristic-friendly shape) | 0.002 | 0.008 | 0.20x, slower | 46.7 | 48.4 |
+| dup_mul_800 (univariate deg-800 dense QQ) | 0.212 | 0.042 | 5.06x | 46.3 | 46.9 |
+| dmp_mul_3var (`(x+y+z+1)^12` squared) | 0.112 | 0.013 | 8.75x | 48.6 | 48.9 |
+| dup_gcd_70 (heuristic-friendly shape) | 0.001 | 0.008 | 0.17x, slower | 49.0 | 48.9 |
 
 Accuracy: `tests/test_equivalence.py` 9/9 exact vs sympy; core unit
 tests 14/14 (`cargo test -p sympy-poly-core`); upstream kernel subset

@@ -1,0 +1,31 @@
+{
+  "machine": "x86_64",
+  "python": "3.12.3",
+  "sympy": "1.14.0",
+  "rows": [
+    {
+      "workload": "dup_mul_800",
+      "sympy_wall_secs": 0.2117544619832188,
+      "rust_wall_secs": 0.04181225597858429,
+      "speedup": 5.064411307815506,
+      "sympy_maxrss_kb": 47376,
+      "rust_maxrss_kb": 48072
+    },
+    {
+      "workload": "dmp_mul_3var",
+      "sympy_wall_secs": 0.11237687198445201,
+      "rust_wall_secs": 0.012843457981944084,
+      "speedup": 8.749736413856494,
+      "sympy_maxrss_kb": 49812,
+      "rust_maxrss_kb": 50092
+    },
+    {
+      "workload": "dup_gcd_70",
+      "sympy_wall_secs": 0.001382889924570918,
+      "rust_wall_secs": 0.008006248972378671,
+      "speedup": 0.1727263203207705,
+      "sympy_maxrss_kb": 50136,
+      "rust_maxrss_kb": 50064
+    }
+  ]
+}
