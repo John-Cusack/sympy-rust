@@ -29,17 +29,17 @@ wins.
 
 ## Install
 
-Published as `sympy-poly-rust` (version 0.1.0). The 0.1.0 files land on
-TestPyPI first (same wheel + sdist, same SHA-256) and are promoted to PyPI;
-until the production landing completes, install from TestPyPI:
+Published as `sympy-poly-rust` 0.1.0. PyPI and TestPyPI carry the same
+wheel + sdist (same SHA-256):
 
 ```sh
-pip install --index-url https://test.pypi.org/simple/ sympy-poly-rust==0.1.0
-pip install sympy-poly-rust==0.1.0   # PyPI, once promoted
+pip install sympy-poly-rust==0.1.0
 ```
 
-The Rust core is on crates.io as `sympy-poly-core` 0.1.0
-(`cargo add sympy-poly-core`).
+- PyPI: <https://pypi.org/project/sympy-poly-rust/0.1.0/>
+- TestPyPI: <https://test.pypi.org/project/sympy-poly-rust/0.1.0/>
+- Rust core on crates.io: <https://crates.io/crates/sympy-poly-core/0.1.0>
+  (`cargo add sympy-poly-core`)
 
 The Python layer converts coefficients with `sympy.QQ`, so `sympy` is a
 runtime dependency of the installed package.
@@ -76,6 +76,7 @@ where sympy's heuristic fires; multivariate GCD; `factor` stays upstream.
 ## Release
 
 `0.1.0` ships the `sympy-poly-rust` Python distribution (wheel + sdist)
-and the `sympy-poly-core` Rust crate. Release scope, artifacts, and the
-verification battery are recorded in `specs/release.md`; the lane config is
+and the `sympy-poly-core` Rust crate; both are live (PyPI, TestPyPI,
+crates.io — see Install). Release scope, artifacts, and the verification
+battery are recorded in `specs/release.md`; the lane config is
 `release.toml`; upstream attribution is `NOTICE`.
