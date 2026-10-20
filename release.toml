@@ -1,0 +1,55 @@
+# Release configuration for the `sympy-poly-rust` distribution.
+#
+# Lane-equivalent of the mirror-template `release.toml` (rustsmith
+# `docs/RELEASE.md`) for a kernel-scoped port that is NOT a drop-in mirror
+# of `sympy`:
+#   * `project` / `python_import` are the import identity of the port
+#     (`sympy_poly`); the upstream `sympy` name stays with upstream, and
+#     `pypi_dist` therefore carries the `-rust` suffix;
+#   * publishing runs from the release lane with a PyPI/crates.io API token
+#     (no CI trusted publisher, so no `release_workflow` entry).
+# Every name and version here MUST match `Cargo.toml`,
+# `sympy-poly-core/Cargo.toml`, and `pyproject.toml`, or the release prep
+# battery fails.
+
+[release]
+schema = 1
+# Import identity of the port (the upstream package name stays with
+# upstream).
+project = "sympy_poly"
+# Rust core crate published to crates.io (`sympy-poly-core/Cargo.toml
+# [package] name`).
+rust_crate = "sympy-poly-core"
+# Python distribution published to PyPI (`pyproject.toml [project] name`).
+pypi_dist = "sympy-poly-rust"
+# Python import name (`sympy_poly`, the shim package next to the extension).
+python_import = "sympy_poly"
+# Release version. MUST equal `[package] version` in `Cargo.toml`,
+# `sympy-poly-core/Cargo.toml`, and `[project] version` in `pyproject.toml`.
+version = "0.1.0"
+# Supported Python versions (floor and the tested matrix).
+requires_python = ">=3.9"
+python_versions = ["3.9", "3.10", "3.11", "3.12", "3.13"]
+# Runners the release workflow matrix would build on.
+platforms = ["ubuntu-22.04", "macos-14", "windows-2022"]
+# Publishing repository (the public mirror repo).
+github_repo = "John-Cusack/sympy-rust"
+# License of this port's own code, and the upstream attribution that must
+# also appear in `NOTICE`.
+license_spdx = "MIT"
+upstream = "sympy/sympy"
+upstream_url = "https://github.com/sympy/sympy"
+upstream_license = "BSD-3-Clause"
+upstream_authors = "the SymPy Development Team"
+# Runtime dependency of the Python shim (`sympy.QQ` coefficients).
+runtime_dependencies = ["sympy>=1.12"]
+# Smoke checks run against the installed wheel (Python expressions; each
+# must evaluate truthy). Stdlib-only, deterministic vectors: the first
+# exercises the Rust kernel over QQ, the second a real `sympy.Poly` call
+# through it, the third proves the compiled extension is the one in use.
+smoke_exprs = [
+  "sympy_poly.dup_mul([sympy_poly.QQ(1), sympy_poly.QQ(2)], [sympy_poly.QQ(3), sympy_poly.QQ(4)]) == [sympy_poly.QQ(3), sympy_poly.QQ(10), sympy_poly.QQ(8)]",
+  "sympy_poly.dup_gcd([sympy_poly.QQ(2), sympy_poly.QQ(0)], [sympy_poly.QQ(4), sympy_poly.QQ(0)]) == [sympy_poly.QQ(1), sympy_poly.QQ(0)]",
+  "((s := __import__('sympy')) and sympy_poly.poly_mul(s.Poly(2, s.Symbol('x'), domain=s.QQ), s.Poly(3, s.Symbol('x'), domain=s.QQ)) == s.Poly(6, s.Symbol('x'), domain=s.QQ))",
+  "sympy_poly._core.__file__.endswith('.so')",
+]

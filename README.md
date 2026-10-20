@@ -27,7 +27,24 @@ wins.
 - `tests/test_equivalence.py` — exact-equality corpus vs sympy.
 - `bench/` — two-track wall + peak-RSS benches, measured-only.
 
-## Install (from source)
+## Install
+
+Published as `sympy-poly-rust` (version 0.1.0). The 0.1.0 files land on
+TestPyPI first (same wheel + sdist, same SHA-256) and are promoted to PyPI;
+until the production landing completes, install from TestPyPI:
+
+```sh
+pip install --index-url https://test.pypi.org/simple/ sympy-poly-rust==0.1.0
+pip install sympy-poly-rust==0.1.0   # PyPI, once promoted
+```
+
+The Rust core is on crates.io as `sympy-poly-core` 0.1.0
+(`cargo add sympy-poly-core`).
+
+The Python layer converts coefficients with `sympy.QQ`, so `sympy` is a
+runtime dependency of the installed package.
+
+### From source
 
 ```sh
 pip install maturin
@@ -55,4 +72,10 @@ on origin as baseline.
 Ranked follow-ups: heuristic (evaluation/interpolation) GCD for
 heuristic-friendly shapes — the PRS here is correct but ties-or-loses
 where sympy's heuristic fires; multivariate GCD; `factor` stays upstream.
-Publish (TestPyPI/PyPI/crates.io) is human-gated and pending.
+
+## Release
+
+`0.1.0` ships the `sympy-poly-rust` Python distribution (wheel + sdist)
+and the `sympy-poly-core` Rust crate. Release scope, artifacts, and the
+verification battery are recorded in `specs/release.md`; the lane config is
+`release.toml`; upstream attribution is `NOTICE`.
